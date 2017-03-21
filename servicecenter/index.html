@@ -1,0 +1,142 @@
+<!DOCTYPE >
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>服务中心</title>
+    <!-- ref:css https://cdn.stock.pingan.com.cn/html/aylc/servicecenter/styles/indexv1_publish.css?<%= buildNumber %> -->
+    <link type="text/css" rel="stylesheet" href="../css/comm.css"/>
+    <link type="text/css" rel="stylesheet" href="css/lib.css" />
+    <link type="text/css" rel="stylesheet" href="css/main.css" />
+    <!-- endref -->
+</head>
+
+<body>
+<section id="mainTmpl" ng-controller="serviceCenterCtrl">
+    <section class="x-head-skin x-head-layout">
+        <form action="" class="x-problem-search-layout x-problem-search-skin">
+            <a class="d_b" href="javascript:void(0);" id="searchWeb" otype="button" otitle="FWZX_SS">
+
+                <span class="x-problem-search-input-skin x-problem-search-input-layout d_b"></span>
+
+                <i class="x-i1"></i>
+                <span class="x-problem-search-words-layout">请输入问题、关键词</span>
+            </a>
+        </form>
+        <nav class="x-nav" id="x-nav">
+        </nav>
+    </section>
+    <section id="x-hotProblems">
+
+        <div class="x-line-layout2">
+            <div class="x-line x-line-layout">
+                <h2 class="x-hotProblems-title-layout x-hotProblems-title-skin">热点问题</h2>
+            </div>
+            <div id="x-hotProblems-content">
+                <div class="clearfix x-hotProblems-line" ng-repeat="problem in hotProblems">
+                    <u>
+                        <a href="javascript:void(0);" class="eventToNative" ng-click="go($event)" re-url="{{problem.cloneArr[0].url}}" re-name="" re-proxy="{{problem.cloneArr[0].isProxy}}" otype="{{problem.cloneArr[0].otype}}" otitle="{{problem.cloneArr[0].otitle}}">
+                            <i class="x-i-fang{{problem.cloneArr[0].icon_fang_type}}"></i>
+                            <span>{{problem.cloneArr[0].name}}</span>
+                        </a>
+                    </u>
+                    <div class="overflow x-overflow-layout">
+                        <u ng-repeat="o in problem.otherArr">
+                            <a href="javascript:void(0);" ng-click="go($event)" re-url="{{o.url}}" re-name="" class="eventToNative" re-proxy="{{o.isProxy}}" otype="{{o.otype}}" otitle="{{o.otitle}}">
+                                <i class="x-i-fang{{o.icon_fang_type}}"></i>
+                                <span>{{o.name}}</span>
+                            </a>
+                        </u>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="x-modules">
+        <article class="x-modules-layout x-mt20 x-modules-skin" ng-repeat="module in modules">
+        <ul class="x-modules-summary-layout x-modules-summary-skin">
+            <li class="x-modules-title-skin x-modules-title">
+                <a href="javascript:void(0);" class="eventToNative x-modules-title-layout" ng-click="go($event)" re-url="{{module.more}}" re-name="" re-proxy="{{module.isProxy}}" otype="{{module.otype}}" otitle="{{module.otitle}}">
+                    <i class="x-icon-module<%=item.icon_module_type%>"></i>
+                    {{module.moduleName}}
+                    <i class="x-i-more x-more"></i>
+                </a>
+            </li>
+            <li ng-repeat="item in module.summary">
+                <a href="javascript:void(0);" re-url="{{item.url}}" ng-click="go($event)" re-name="" class="eventToNative" re-proxy="{{item.isProxy}}" otype="{{item.otype}}" otitle="{{item.otitle}}">{{item.name}}</a>
+            </li>
+        </ul>
+    </article>
+    </section>
+</section>
+
+<script type="text/javascript" src="../js/angular/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module("servicecenter.module", []).controller("serviceCenterCtrl", ["$scope", "$http", "$sce", "$compile", function($scope, $http, $sce, $compile){
+        $scope.title = 1;
+        $http.jsonp("https://stock.pingan.com/huodong/ShowOrder/H5/servicefrontcfg/serviceCenterv5_12.json?callback=JSON_CALLBACK");
+        window.serviceCenterv5_12 = serviceCenterv5_12;
+        function serviceCenterv5_12(data){
+            $scope.modules = data.results.modules;
+            $scope.hotProblems = getHotProblems(data);
+            $scope.titles = data.results.title;
+            $scope.nav = getTitles(data);
+            $scope.titles = $scope.titles.slice(1);
+            $scope.go = function($event){
+                var target = $event.target;
+                if(target.nodeName == "A"){
+                     window.location.href = target.getAttribute("re-url");
+                }else{
+                     window.location.href = target.parentNode.getAttribute("re-url");
+                }
+               
+            };
+            var $html;
+            switch($scope.titles.length){
+                case 1:
+                    $html = $compile("<nav-template-1></nav-template-1>")($scope);
+                    break;
+                case 2:
+                    $html = $compile("<nav-template-2></nav-template-2>")($scope);
+                    break;
+                case 3:
+                    $html = $compile("<nav-template-3></nav-template-3>")($scope);
+                    break;
+            }
+            angular.element(document.querySelector("nav")).append($html);
+        }
+
+        function getHotProblems(data){
+            var arr = [];
+            for(var i = 0 ; i < Math.ceil(data.results.hotProblems.length / 4); i++){
+                var cloneArr = data.results.hotProblems.slice(i * 4, (i + 1) * 4);
+                var otherArr = cloneArr.slice(1);
+                arr.push({
+                    cloneArr: cloneArr,
+                    otherArr: otherArr
+                });
+            }
+            return arr;
+        }
+
+        function getTitles(data){
+            return data.results.title.slice(1);
+        }
+    }]).directive("navTemplate1", function(){
+        return {
+            templateUrl: "tmpl/navTemplate1.tmpl"
+        };
+    }).directive("navTemplate2", function(){
+        return {
+            templateUrl: "tmpl/navTemplate2.tmpl"
+        };
+    }).directive("navTemplate3", function(){
+        return {
+            templateUrl: "tmpl/navTemplate3.tmpl"    
+        };
+    });
+    angular.bootstrap(document, ["servicecenter.module"]);
+</script>
+</body>
+</html>

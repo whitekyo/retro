@@ -1,0 +1,448 @@
+.x-comment:last-child {
+    margin-bottom: .2rem;
+}
+
+.x-comment-title {
+    width: 1.36rem;
+    height: .46rem;
+    border-top-right-radius: .1rem;
+    border-bottom-left-radius: .1rem;
+    font-size: .26rem;
+    line-height: .46rem;
+    text-align: center;
+}
+
+.x-comment-title.hot {
+    color: #fff;
+    background: -webkit-linear-gradient(left,#ff5325, #ff5154);
+}
+
+.x-comment-title.all {
+    color: #fff;
+    background: -webkit-linear-gradient(left,#00b4ff, #198be8);
+}
+
+.x-comment img {
+    width: .6rem;
+    height: .6rem;
+    float: left;
+    border-radius: .1rem;
+    position: relative;
+}
+
+.x-comment-content img {
+    width: 100%;
+    height: auto;
+    float: none;
+    position: static;
+}
+
+.x-comment figure {
+    overflow: hidden;
+    margin-top: .3rem;
+}
+
+.x-comment-username,
+.x-comment-date {
+    margin-left: .8rem;
+}
+
+span.x-comment-general-title,
+span.x-comment-general-summary {
+    margin-left: 1.08rem;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.x-comment-username {
+    font-size: .3rem;
+    color: #111;
+    line-height: .3rem;
+    margin-bottom: .06rem;
+}
+
+#wrap .x-comment-username a {
+    color: #111;
+}
+
+.x-comment-date {
+    font-size: .2rem;
+    color: #666;
+    line-height: .24rem;
+}
+
+.x-comment-general-title {
+    font-size: .3rem;
+    color: #666;
+    line-height: .48rem;
+
+}
+
+.x-comment-general-summary {
+    font-size: .24rem;
+    color: #999;
+    line-height: .42rem;
+}
+
+.x-comment-detail {
+    line-height: .42rem;
+    font-size: .3rem;
+    color: #111;
+    padding: .17rem 0 0 0;
+    border-bottom: 1px solid #ededed;
+    word-break: break-word;
+}
+
+.x-comment-reply,
+.x-comment-perfect {
+    background-size: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+.x-comment-reply {
+    width: .34rem;
+    height: .28rem;
+    top: .43rem;
+    right: 1.32rem;
+    background-image: url(../img/repost.png);
+}
+
+.x-comment-perfect {
+    width: .34rem;
+    height: .3rem;
+    top: .39rem;
+    right: .33rem;
+    background-image: url(../img/profect.png);
+}
+
+.x-comment-perfect:before {
+    content: "+1";
+    color: #e2233e;
+    font-size: .2rem;
+    position: absolute;
+    top: 0;
+    left: .05rem;
+    opacity: 0;
+}
+
+.x-comment-perfect.finish:before {
+    content: '';
+}
+
+.x-comment-perfect.active {
+    background-image: url(../img/no-profect.png);
+}
+
+@-webkit-keyframes plusOne {
+  70% { opacity: 1; top: -.25rem; left: .05rem;}
+  90% { opacity: 0; top: -.25rem; left: .05rem;}
+  100% { top: 0; left: .05rem;}
+}
+@keyframes plusOne {
+  70% { opacity: 1; top: -.25rem; left: .05rem;}
+  90% { opacity: 0; top: -.25rem; left: .05rem;}
+  100% { top: 0; left: .05rem;}
+}
+
+.x-comment-perfect.active:before {
+    -webkit-animation: 1s plusOne ease-in-out;
+    animation: 1s plusOne ease-in-out; 
+}
+
+.x-comment-line {
+    position: relative;
+}
+
+.x-comment-line:last-child .x-comment-detail {
+    border-bottom: none;
+}
+
+.x-comment-more {
+    padding-top: .3rem;
+    font-size: .28rem;
+    text-align: center;
+}
+
+.x-comment-more a {
+    color: #999!important;
+}
+
+.x-comment-general {
+    display: block;
+    padding: .15rem .22rem;
+    background-color: #f5f5f5;
+    margin: .2rem 0 .3rem 0; 
+}
+
+.x-comment-general figure {
+    margin-top: 0;
+}
+
+.x-comment .x-comment-preview {
+    width: .9rem;
+    height: .9rem;
+}
+
+.x-comment .x-comment-preview:after {
+    width: .9rem;
+    height: .9rem;
+    content: attr(alt);
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #999;
+    font-size: .12rem;
+    color: #fff;
+    text-align: center;
+    line-height: .9rem;
+}
+
+.x-comment-perfect-title .x-comment-perfect {
+    position: static;
+    display: inline-block;
+    margin-left: .09rem;
+    vertical-align: text-top;
+}
+
+.x-comment-perfect-layout .x-comment-detail:first-child {
+    padding-top: .3rem;
+    margin-bottom: .3rem;
+}
+
+.x-comment-perfect-layout .x-comment-detail:last-child {
+    margin-bottom: 0;
+}
+
+.error-list-skin {
+    padding-bottom: .5rem;
+}
+
+.x-comment-no-message,
+.x-error-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.x-comment-no-message span {
+    width: 2.01rem;
+    height: 1.91rem;
+    background-image: url(../img/no-message.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 100%;
+    margin: 0 auto;
+}
+
+.x-comment-no-message p {
+    margin-top: .3rem;
+    text-align: center;
+    font-size: .28rem;
+    color: #999;
+}
+
+.x-comment-detail-layout {
+    padding: .21rem .28rem .2rem .28rem;
+}
+
+.x-comment-detail-layout figure {
+    margin-top: 0;
+}
+
+.x-comment-detail-layout article {
+    border-bottom: none;
+}
+
+.x-comment-words .x-comment-line {
+    padding: 0 .3rem;
+}
+
+.x-comment-words article {
+    padding-left: .8rem;
+}
+
+.x-comment-operation {
+    overflow: hidden;
+    padding: .1rem 0 .2rem 0;
+}
+
+.x-comment-remove,
+.x-comment-main-remove {
+    float: right;
+    color: #007de6;
+    font-size: .24rem;
+    line-height: .24rem;
+}
+
+.x-comment-reply-temp {
+    top: .16rem;
+    right: .33rem;
+}
+
+.x-comment-reply .x-comment-num,
+.x-comment-perfect .x-comment-num {
+    top: 0rem;
+    left: .4rem;
+    color: #999;
+    font-size: .22rem;
+    position: absolute;
+    line-height: .32rem;
+}
+
+.x-comment-perfect .x-comment-num {
+    top: .045rem;
+}
+
+.x-please-perfect {
+    right: 0.6rem;
+}
+
+.x-comment-detail-skin {
+    padding-bottom: .17rem;
+}
+
+.x-comment-no-network {
+    width: 2.08rem;
+    height: 1.91rem;
+    display: block;
+    margin: .9rem auto .3rem auto;
+    background-image: url(../img/no-network.png);
+    background-size: 100%;
+}
+
+.x-comment-error-tip {
+    font-size: .28rem;
+    color: #999;
+    line-height: .28rem;
+    margin-bottom: .5rem;
+    text-align: center;
+}
+
+.x-comment-refresh-btn {
+    width: 1.46rem;
+    height: .56rem;
+    line-height: .56rem;
+    text-align: center;
+    border: .02rem solid #dbdbdb;
+    border-radius: .14rem;
+    font-size: .28rem;
+    color: #333!important;
+    display: block;
+    margin: 0 auto;
+}
+
+.x-comment-no-result {
+    width: 2.01rem;
+    height: 1.91rem;
+    display: block;
+    margin: .9rem auto .3rem auto;
+    background-image: url(../img/no-message.png);
+    background-size: 100%;
+}
+
+.x-comment-dialog {
+    width: 2.4rem;
+    padding-top: .14rem;
+    padding-bottom: .14rem;
+    text-align: center;
+    border-radius: .2rem;
+    background-color: #000;
+    opacity: .7;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    z-index: 1000;
+    -webkit-animation: 2s comment_dialog ease-in-out;
+    animation: 2s comment_dialog ease-in-out; 
+    opacity: 0;
+}
+
+@-webkit-keyframes comment_dialog {
+  0% { opacity: 0;}
+  10% { opacity: 1}
+  100% { opacity: 0;}
+}
+@keyframes comment_dialog {
+  0% { opacity: 0;}
+  10% { opacity: 1}
+  100% { opacity: 0;}
+}
+
+
+
+.x-comment-dialog.x-img-tip {
+    padding-top: .36rem;
+}
+
+.x-comment-dialog.x-error-tip {
+    padding-top:.14rem;
+    padding-bottom: .14rem;
+}
+
+.x-error-tip .x-comment-tip {
+    line-height: .42rem;
+}
+
+.x-comment-success {
+    background-image: url(../img/true.png);
+    width: .7rem;
+    height: .7rem;
+    display: inline-block;
+    background-size: 100%;
+}
+
+.x-comment-tip {
+    color: #fff;
+    font-size: .28rem;
+    line-height: .7rem;
+    display: block;
+}
+
+.x-comment-loading {
+    background-image: url(../img/comment-loading.png);
+    width: .4rem;
+    height: .4rem;
+    display: inline-block;
+    -webkit-animation: 1s circle ease infinite;
+    animation: 1s circle ease infinite;
+    background-size: 100%; 
+    margin-right: .2rem;
+    vertical-align: middle;
+}
+
+@-webkit-keyframes circle {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(-360deg);}
+}
+
+@keyframes circle {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(-360deg);}
+}
+
+body, div, p {
+    -webkit-user-select: auto;
+}
+
+#x-comment-hot .x-comment-line:last-child .x-comment-detail,
+#x-comment-all .x-comment-line:nth-last-child(2) .x-comment-detail {
+    border-bottom: none;
+}
+
+.x-comment-single {
+  right: .38rem;
+  top: .39rem;
+}
+
+.x-comment-card-general {
+    padding: 0;
+}
+
+.good-num-perfect {
+    top: .12rem;
+}

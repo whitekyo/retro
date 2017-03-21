@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>评论</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- ref:css https://cdn.stock.pingan.com.cn/html/aylc/snowball/css/index_publish.css?<%= buildNumber %> -->
+    <link rel="stylesheet" type="text/css" href="../css/comm.css">
+    <link rel="stylesheet" href="css/snowball.css">
+    <link rel="stylesheet" href="../css/comment.css"/>
+    <!-- endref -->
+</head>
+<body>
+    <div id="wrap" ng-controller="snowballCtrl" ng-include="app">
+    </div>
+    <script type="text/javascript" src="../js/angular/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module("common.module", []).service("commonService", [function(){
+            var directive = [
+                "tmpl/preview_stock.tmpl",
+                "tmpl/preview_info.tmpl",
+                "tmpl/preview_post.tmpl"
+            ];
+            var _callback;
+            var c_height = document.documentElement.clientHeight;
+            var app = {};
+            var self = this;
+            return {
+                init: function(){
+                    angular.element(window).bind("scroll", function(){
+                        if(document.body.scrollHeight - document.body.scrollTop <= c_height) {
+                            app.getRollList().then(function(data){
+                                _callback(data);
+                            });
+                        }
+                    });
+                },
+                updateGetInfo: function(instance, callback){
+                    _callback = callback;
+                    app = instance;
+                },
+                renderList: function(list){
+                    angular.forEach(list, function(value, key){
+                        value.path = directive[value.symbol ? 0 : value.info ? 1 : 2];
+                    });
+                    return list;
+                }
+            };
+        }]);
+
+        angular.module("getReply.module", []).service("getReployService", ["$http", function($http){
+            var token = {"version":"2.0","channel":"","tokenId":"N_5BCF36E0A49EFB3CF5C964A1349C6A5DEF929D3B7CD46DADA51A22D4B3E528ECB6965947659323E879624908A7F727E967F7728C5C474F9704628C4E77B5ABE6FC46CB371B8BE6A1","appName":"AYLCH5","cltplt":"h5","cltver":"1.0","body":{},"accountType":null,"userCode":"189624350","loginType":"5"};
+            token.body.pageNumber = 1;
+            token.body.pageSize = 20;
+            return {
+                getList: function(){
+                    return $http.post("/restapi/stkcontent/getReply", token)
+                                .error(function(e){
+                                    console.log(e);
+                                });
+                },
+                getRollList: function(){
+                    token.body.pageNumber++;
+                    return $http.post("/restapi/stkcontent/getReply", token)
+                                .error(function(e){
+                                    console.log(e);
+                                });
+                }
+            };
+        }]).directive("previewStockDirective", function(){
+            return {
+                templateUrl: "tmpl/preview_stock.tmpl"
+            };
+        }).directive("previewInfoDirective", function(){
+            return {
+                templateUrl: "tmpl/preview_info.tmpl"
+            };
+        }).directive("previewPostDirective", function(){
+            return {
+                templateUrl: "tmpl/preview_post.tmpl"
+            };
+        });
+
+        angular.module("snowball.module", ["getReply.module", "common.module"]).controller("snowballCtrl", ["$scope", "getReployService", "commonService", function($scope, getReployService, commonService){
+            var page = [
+                "getReply.html",
+                "commentDetail.html"
+            ];
+            
+            $scope.app = page[getVl("reviewId") ? 1 : 0];
+            getReployService.getList($scope).then(function(data){
+                
+                $scope.replyList = commonService.renderList(data.data.result.replyList);
+            });
+            commonService.init();
+            commonService.updateGetInfo(getReployService, function(data){
+                $scope.replyList.concat(self.renderList(data.data.result.replyList));
+            });
+            function getVl(name) {
+                var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
+                if (reg.test(location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
+                return "";
+            }
+        }]);
+        angular.bootstrap(document, ["snowball.module"]);
+    </script>
+</body>
+
+</html>

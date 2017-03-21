@@ -1,0 +1,125 @@
+﻿<script type="text/template" id="commentDetails_temp">
+    <%_.each(obj,function(e,i){%>
+        <li data-userid="<%=e.userId%>" data-id="<%=e.id%>" data-username="<%=e.userName%>" data-usertype="<%=e.userType%>" data-commentP="<%=e.commentParentUserName%>">
+        <%if(!e.commentParentUserName){%>
+            <span>
+                <label class="username"><%=e.userName%></label>：
+            </span>
+            <label><%=e.commentContent%></label>
+        <%} else {%>
+            <span>
+                <label class="username"><%=e.userName%></label>
+                回复
+                <label><%=e.commentParentUserName%></label>：
+            </span>
+            <label><%=e.commentContent%></label>
+        <%}%>
+        </li>
+    <%})%>
+</script>
+<script type="text/template" id="comment-detail-tmpl">
+    <li class="x-comment-line x-comment-detail-layout-list" data-id="<%=id%>" data-del="<%=delSign%>" data-userid="<%=userId%>" data-usertype="<%=userType%>" data-username="<%=screenName%>">
+        <figure class="x-comment-detail-layout-3">
+            <a href="javascript:void(0);" data-unionid="<%=unionId%>" class="goto_community"><img src="<%=headPortrait ? headPortrait : 'images/defaut_head.jpg'%>" alt="头像" class="user-img" onerror="this.src='images/defaut_head.jpg'"/></a>
+            <p class="x-comment-username">
+                <a href="javascript:void(0);" data-unionid="<%=unionId%>" class="goto_community"><%=screenName%></a>
+            </p>
+            <p class="x-comment-date"><%=commentDate%> <span class="x-comment-source"><%=source ? source : ''%></span></p>
+        </figure>
+        <a href="javascript:void(0);" style="display: none;" class="x-comment-reply" otype="Function_newsComment" otitle="newsComment_commDetail_topReply">
+            <span class="x-comment-num" data-count="<%=replyCount%>"><%=replyCount%></span>
+        </a>
+        <!--<a href="javascript:void(0);" class="x-comment-reply" otype="Function_newsComment" otitle="newsComment_commDetail_topReply">
+            <span class="x-comment-num" data-count="<%=replyCount%>"><%=replyCount%></span>
+        </a>
+        <a href="javascript:void(0);" class="x-comment-perfect <%=goodSign == 1 ? 'active finish' : ''%>" otype="Function_newsComment" otitle="newsComment_commDetail_topAddAgree">
+            <span class="x-comment-num" data-count="<%=good%>"><%=good%></span>
+        </a>-->
+        <a href="javascript:void(0);" class="x-comment-focus x-comment-focus-btn" style="display: none;" data-unionid="">关注</a>
+        <article class="x-comment-detail x-current-detail x-comment-content x-comment-detail-layout-2">
+            <div class="x-comment-detail-paragraph"></div>
+            <div class="x-comment-operation">
+                <%if(delSign == 1){%>
+                    <a href="javascript:void(0);" class="x-comment-main-remove" otype="Function_newsComment" otitle="newsComment_commDetail_deleteComm">删除</a>
+                <%}%>
+            </div>
+        </article>
+        <div class="comment-followers-layout">
+            <div class="comment-followers">
+                <span class="comment-goodNum" style="display: none;" ><span><%=good%></span>赞</span>
+                <a href="javascript:void(0);" class="x-comment-perfect good-num-perfect <%=goodSign == 1 ? 'active finish' : ''%>" otype="Function_newsComment" otitle="newsComment_commDetail_topAddAgree" data-unionid="" data-commentid="<%=id%>">
+                    <!--<span class="x-comment-num" data-count="<%=good%>"><%=good%></span>-->
+                </a>
+            </div>
+        </div>
+    </li>
+    
+</script>
+<script type="text/template" id="good-list-tmpl">
+    <%_.each(list, function(m, i){%>
+        <img src="<%=m.headPortrait%>" alt="点赞者" data-unionid="<%=m.unionId%>" class="follower-img" onerror="this.src='images/defaut_head.jpg'"/>
+    <%})%>
+</script>
+<script type="text/template" id="repost-tmpl">
+    <%_.each(list, function(m, i){%>
+        <li class="x-comment-line" data-id="<%=m.id%>" data-userid="<%=m.userId%>" data-usertype="<%=m.userType%>" data-username="<%=m.userName%>">
+            <figure>
+                <a href="javascript:void(0);" data-unionid="<%=m.unionId%>" class="goto_community"><img src="<%=m.headPortrait ? m.headPortrait : 'images/defaut_head.jpg'%>" alt="头像" class="user-img" onerror="this.src='images/defaut_head.jpg'"/></a>
+                <p class="x-comment-username">
+                    <a href="javascript:void(0);" data-unionid="<%=m.unionId%>" class="goto_community"><%=m.userName%></a>
+                </p>
+                <p class="x-comment-date"><%=m.commentDate%></p>
+            </figure>
+            <a href="javascript:void(0);" class="x-comment-perfect x-please-perfect <%=m.goodSign == 1 ? 'active finish': ''%>" otype="Function_newsComment" otitle="newsComment_commDetail_replyAddAgree">
+                <span class="x-comment-num" data-count="<%=m.good%>"><%=m.good%></span>
+            </a>
+            <article class="x-comment-detail">
+                <%if(m.commentParentUserId){%>
+                    <p class="x-comment-paragraph x-comment-content" data-index="<%=i%>" otype="Function_newsComment" otitle="newsComment_commDetail_replyOther">回复 <%=m.commentParentUserName%>：
+                        <%if(m.commentContent.length + m.commentParentUserName.length > 144){%>
+                            <%=m.commentContent.slice(0, 144 - m.commentParentUserName.length) + "..."%>
+                        <%}else{%>
+                            <%=m.commentContent%>
+                        <%}%>
+                    </p>    
+                <%}else{%>
+                    <p class="x-comment-paragraph" data-index="<%=i%>" otype="Function_newsComment" otitle="newsComment_commDetail_replyOther"><%=m.commentContent%></p>
+                <%}%>
+                <div class="x-comment-operation">
+                    <%if(m.delSign == 1){%>
+                        <a href="javascript:void(0);" class="x-comment-remove" otype="Function_newsComment" otitle="newsComment_commDetail_deleteReply">删除</a>
+                    <%}%>
+                </div>
+            </article>
+            
+        </li>
+    <%})%>
+</script>
+    <div class="main_box x-comment x-comment-detail-layout">
+        <ul>
+            
+        </ul>
+	</div>
+    <div class="x-comment-gap"></div>
+    <div class="x-words">
+        <h2>最新回复 (<span class="x-word-num"></span>)</h2>
+        <div class="x-comment x-comment-words">
+            <ul>
+                <li class="x-comment-more"></li>
+            </ul>
+        </div>
+    </div>
+    <p id="snowball_download" otype="commentsDetial" otitle="guangGao"></p>
+    <div class="popup">
+        <ul class="delete-ul">
+            <li>删除回复</li>
+            <li>取消</li>
+        </ul>
+    </div>
+    <div class="popup-del">
+        <span>已删除</span>
+    </div>
+    <div class="x-fed-gap"></div>
+    <div class="x-fed-comment">
+        <a href="javascript:void(0);" class="x-fed-comment-link" otype="Function_newsComment" otitle="newsComment_commDetail_addReply">回复  <span class="x-fed-comment-person"></span>：</a>
+    </div>

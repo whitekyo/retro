@@ -1,0 +1,509 @@
+/*resetmobile*/
+html {
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  min-width: 6.4rem;
+  font-size: 312.5%; }
+
+body {
+  color: #333;
+  font-size: .28em;
+  line-height: 1.5;
+  font-family: arial, Microsoft Yahei;
+  background: #eee;
+  webkit-touch-callout: none;
+  -webkit-user-select: none; }
+
+body, header, footer, section, div, span, p, img, a, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, em, i, b, u, del, menu, nav, fieldset, legend, article, aside, details, figcaption, hgroup, pre, code, from, blockquote, th, td, tr, hr, table, img, figure, button, input, textarea {
+  margin: 0;
+  padding: 0;
+  webkit-touch-callout: none;
+  -webkit-text-size-adjust: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+img {
+  vertical-align: middle;
+  border: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+
+ul, ol, li {
+  list-style: none; }
+
+em, i {
+  font-style: normal; }
+
+img {
+  border: none; }
+
+input, img {
+  vertical-align: middle; }
+
+iframe {
+  margin: 0;
+  padding: 0;
+  border: none; }
+
+*:not(input, textarea) {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+input[type="button"],
+input[type="checkbox"],
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="email"],
+input[type="file"],
+input[type="image"],
+input[type="number"],
+input[type="password"],
+input[type="range"],
+input[type="reset"],
+input[type="search"],
+input[type="submit"],
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  border: 0;
+  border-radius: 0; }
+
+textarea:focus, input:focus {
+  outline: 0; }
+
+a {
+  color: #6E7D8B;
+  text-decoration: none;
+  outline: 0; }
+  a:active, a:hover, a.current {
+    outline: 0; }
+
+.c {
+  text-align: center; }
+
+.tr {
+  text-align: right; }
+
+.f60, input.f60 {
+  color: #FF4C06; }
+
+.f00 {
+  color: #f00; }
+
+input, button, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  vertical-align: middle; }
+
+button, input, optgroup, select, textarea {
+  color: inherit;
+  margin: 0;
+  -webkit-writing-mode: horizontal-tb; }
+
+button, html input[type=button], input[type=reset], input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+input {
+  color: #333; }
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg); } }
+@media screen and (min-width: 410px) {
+  html {
+    font-size: 400%; } }
+@media screen and (min-width: 480px) {
+  html {
+    font-size: 469%; } }
+@media screen and (min-width: 640px) {
+  html {
+    font-size: 625%; } }
+.c_hd {
+  position: relative; }
+
+.hide {
+  display: none; }
+
+.block {
+  display: block; }
+
+.floatL {
+  float: left; }
+
+.floatR {
+  float: right; }
+
+.gray666 {
+  color: #666; }
+
+.gray333 {
+  color: #333; }
+
+.gray999 {
+  color: #999; }
+
+#wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  height: 100%;
+  position: relative; }
+
+/*header*/
+header {
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 0.86rem;
+  z-index: 10004;
+  background: #B12729; }
+  header section:nth-child(2) {
+    color: #fff;
+    line-height: 0.86rem;
+    font-size: 0.32rem;
+    text-align: center;
+    display: block;
+    position: relative; }
+  header section:first-child {
+    min-width: 1rem;
+    z-index: 100;
+    position: absolute; }
+    header section:first-child a {
+      position: relative;
+      display: inline-block;
+      line-height: 100%;
+      padding: 0.24rem 0 0 0.2rem; }
+  header .home_i {
+    width: 0.46rem;
+    height: 0.4rem;
+    position: absolute;
+    right: 0.26rem;
+    top: 0.20rem;
+    background-position: -.52rem -1.25rem; }
+    header .home_i a {
+      display: block;
+      width: 0.5rem;
+      height: 0.5rem; }
+  header section.head-right-text {
+    position: absolute;
+    width: 1.2rem;
+    height: .86rem;
+    right: .2rem;
+    top: 0;
+    color: #f00;
+    z-index: 1000;
+    line-height: .86rem; }
+    header section.head-right-text a {
+      color: #fff; }
+
+.home_i,
+header section:first-child a i {
+  /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/img/icon_f.png?<%= buildNumber %>) no-repeat;*/
+  background: url(../img/icon_f.png) no-repeat;
+  /*endref*/
+  background-size: 4rem auto;
+  width: 0.4rem;
+  height: 0.35rem;
+  display: inline-block;
+  background-position: 0 -.88rem; }
+
+/*layout*/
+.details {
+  background: #fff;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc; }
+  .details li {
+    color: #666;
+    line-height: 1;
+    padding: 0.25rem 0;
+    margin-left: .3rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    position: relative; }
+    .details li p {
+      margin-right: .3rem;
+      overflow: hidden;
+      position: relative; }
+      .details li p input {
+        width: 100%;
+        box-sizing: border-box;
+        color: #111;
+        outline: none; }
+    .details li label {
+      width: 28%;
+      float: left;
+      padding-top: 1px; }
+  .details li.img-section {
+    padding: .19rem 0;
+    line-height: 1.8; }
+
+.details li:last-child {
+  border: none; }
+
+.submit_btn {
+  width: 95%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  color: #fff;
+  font-size: .36rem;
+  margin-top: .2rem;
+  text-align: center;
+  line-height: .89rem;
+  border: none;
+  background: #B12729; }
+
+.dele_div,
+.details section p i {
+  display: inline-block;
+  position: relative; }
+
+.btn {
+  margin-top: .4rem; }
+  .btn a {
+    display: block;
+    color: #fff;
+    background: #c7c7c7;
+    border-radius: 3px;
+    width: 90%;
+    margin: 0 auto;
+    line-height: .78rem;
+    font-size: .3rem;
+    text-align: center; }
+
+.hqyzm {
+  display: block;
+  border-left: 1px solid #666666;
+  color: #999999;
+  padding-left: .2rem;
+  font-size: .24rem;
+  z-index: 1000; }
+
+.hui {
+  color: #999; }
+
+input.wid40 {
+  width: 30%;
+  font-size: .3rem;
+  line-height: .75rem; }
+
+i.short {
+  width: 2.2rem;
+  display: inline-block;
+  position: relative; }
+
+/*icon*/
+.not_null {
+  display: block;
+  position: absolute;
+  left: 0.1rem;
+  top: .33rem;
+  /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/img/icon_f.png?<%= buildNumber %>) no-repeat;*/
+  background: url(../img/icon_f.png) no-repeat;
+  /*endref*/
+  background-size: 4rem auto;
+  width: 0.13rem;
+  height: 0.14rem;
+  background-position: 0 -1.88rem; }
+
+.down {
+  width: 100%;
+  display: block;
+  /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/img/icon_f.png?<%= buildNumber %>) no-repeat right -2.2rem;*/
+  background: url(../img/icon_f.png) no-repeat right -2.2rem;
+  /*endref*/
+  background-size: 4rem auto;
+  margin-right: .3rem;
+  line-height: 1;
+  overflow: hidden;
+  box-sizing: border-box;
+  outline: none;
+  color: #111; }
+
+input.dele:hover {
+  /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/img/icon_f.png?<%= buildNumber %>) no-repeat right 0;*/
+  background: url(../img/icon_f.png) no-repeat right 0;
+  /*endref*/
+  width: 100%;
+  display: inline-block;
+  background-size: 4rem auto;
+  cursor: pointer;
+  outline: none;
+  border: none; }
+
+.a_dele {
+  width: 0.35rem;
+  height: 0.35rem;
+  position: absolute;
+  right: 0;
+  bottom: 0; }
+
+.c_ico2 {
+  display: block;
+  /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/img/icon_f.png?<%= buildNumber %>) no-repeat;*/
+  background: url(../img/icon_f.png) no-repeat;
+  /*endref*/
+  background-size: 4rem auto;
+  width: 0.2rem;
+  height: 0.35rem;
+  background-position: 0 -2.7rem;
+  position: absolute;
+  top: .27rem;
+  right: .33rem; }
+  .c_ico2 option {
+    padding-left: 10px; }
+
+.success_bule_ico,
+.nodata_ico,
+.up_ico,
+.down_ico, i.fail_ico, i.round_ico, i.ask_ico, i.fail_zy_ico, i.success_zy_ico, i.success_ico, .check_icon, .check_icon:checked, i.text_icon, .ischecked {
+  /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/img/icon_f.png?<%= buildNumber %>) no-repeat;*/
+  background: url(../img/icon_f.png) no-repeat;
+  /*endref*/
+  background-size: 4rem auto;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-position: -.55rem -3.16rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -2px .1rem 0 0; }
+
+.check_icon {
+  background-position: left -.4rem; }
+
+i.ask_ico {
+  background-position: left -3.14rem; }
+
+i.round_ico {
+  background: #999;
+  border-radius: 1rem;
+  width: .07rem;
+  height: .07rem; }
+
+.up_ico,
+.down_ico {
+  background-position: right -2.2rem;
+  width: 0.3rem;
+  height: 0.25rem; }
+
+.up_ico {
+  background-position: right -1.92rem; }
+
+i.fail_ico,
+i.success_ico {
+  background-position: -1rem -2.82rem;
+  width: .8rem;
+  height: .8rem; }
+
+i.fail_ico {
+  background-position: -1.9rem -2.82rem; }
+
+.check_icon:checked,
+.ischecked {
+  background-position: 0 -1.27rem; }
+
+.x-form .a_dele {
+  position: absolute;
+  right: .3rem;
+  top: 50%;
+  margin-top: -0.16rem;
+  /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/img/icon_f.png?<%= buildNumber %>) no-repeat;*/
+  background: url(../img/icon_f.png) no-repeat;
+  /*endref*/
+  background-size: 4rem auto;
+  width: 0.35rem;
+  height: 0.35rem;
+  background-position: right 0; }
+
+.x-form .a_link_dele {
+  position: absolute;
+  right: 0rem;
+  top: 0;
+  height: .88rem;
+  width: .65rem;
+  z-index: 10;
+  display: none; }
+
+i.success_zy_ico,
+i.fail_zy_ico {
+  background-position: -.7rem -.46rem;
+  background-size: 4.5rem auto; }
+
+i.success_zy_ico {
+  background-position: -1.02rem -.36rem;
+  background-size: 4rem auto; }
+
+/*# sourceMappingURL=comm.css.map */
+/*new add*/
+
+i.nodata_ico{
+    background-position: -4.12rem -4.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-size: 6.2rem auto;
+    margin: 0 auto;
+    display:block;
+}
+
+p.nodata-p{
+  margin-top: 50%;
+  text-align: center;
+}
+
+.bottom-fixed{
+    position: fixed;
+    bottom: 0rem;
+    border-top:1px solid #ddd;
+    width:100%;
+    background-color: #efefef;
+}
+.bottom-fixed button{
+    font-size:0.36rem;
+    color:#fff;
+    height:0.77rem;
+    margin:0.25rem 4.7%;
+    width:90.6%;
+    border: none;
+    border-radius: 8px;
+    background-color: #B12729;
+}
+
+
+.submit_border{
+    background:none;
+    border:1px solid #B12729;
+    color:#B12729;
+}
+
+.success_bule_ico{
+    background-position: left -3.27rem;
+    width: 1rem;
+    height: 1rem;
+    background-size: 3.55rem auto;
+}

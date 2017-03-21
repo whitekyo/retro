@@ -1,0 +1,261 @@
+﻿<script type="text/template" id="reply_temp">
+    <%_.each(obj,function(e,i){%>
+        <li data-symbolcode="<%=e.symbolCode%>" data-sourceid="<%=e.sourceId%>" data-symboltype="<%=e.symbolType%>" data-commentid="<%=e.commentId%>">
+        <%if(e.replyStatus==1){%>
+            <p class="has-view">
+                <i></i>
+                <em><%=e.replyUserName%></em>
+                回复了我的评论
+                <label class="floatR"><%=window.replyDateTime(e.replyDateTime)%></label>
+            </p>
+        <%} else {%>
+            <p class="no-view">
+                <i></i>
+                <em><%=e.replyUserName%></em>
+                回复了我的评论
+                <label class="floatR"><%=window.replyDateTime(e.replyDateTime)%></label>
+            </p>
+        <%}%>
+        </li>
+    <%})%>
+</script>
+<script type="text/template" id="myreply_temp">
+  <%_.each(obj,function(e,i){%>
+    <div class="userInfo has-line" data-symbolcode="<%=e.stockCode%>" data-id="<%=e.sourceId%>" data-symboltype="<%=e.stockType%>" data-commentid="<%=e.commentId%>">
+        <img id="head_img" onerror="this.src='images/defaut_head.jpg'" src='<%=e.headPortrait%>'>
+        <p>
+            <span id="username"><%=e.screenName%></span>
+            <label id="com_time"><%=e.commentDate%></label>
+            <label id="formwhere"><%=e.source%></label>
+        </p>
+        <p class="replay-icon gray999">
+            <em id="reply-data"><%=e.replyCount%></em>
+            <i id="reply-icon">&nbsp;</i>
+        </p> 
+        <p id="comment"><%=e.description%></p>
+    </div>
+  <%})%>
+</script>
+<script type="text/template" id="repost-tmpl">
+    <%_.each(replyList, function(m){%>
+        <li class="x-comment-line">
+            <figure>
+                <a href="javascript:void(0);" data-unionid="<%=m.unionId%>" class="goto_community">
+                    <img src="<%=m.headPortrait ? m.headPortrait : 'images/defaut_head.jpg'%>" alt="头像" class="user-img" onerror="this.src='images/defaut_head.jpg'"/>
+                </a>
+                <p class="x-comment-username">
+                    <a href="javascript:void(0);" data-unionid="<%=m.unionId%>" class="goto_community">
+                        <%=m.replyUserName%></p>
+                    </a>
+                <p class="x-comment-date"><%=m.commentDate%></p>
+            </figure>
+            <article class="x-comment-detail" data-id="<%=m.sourceId%>" data-commentid="<%=m.commentId%>">
+                <p class="x-comment-article" otype="Function_myComments" otitle="myComments_gotReply_commDetail"><%=m.commentContent%></p>
+                <a href="javascript:void(0);" class="x-comment-general">
+                    <figure class="x-comment-img" data-scene="<%=m.scene%>">
+                        <%if(m.symbol){%>
+                            <img src="images/share.png" alt="预览图" class="x-comment-preview"/>
+                            <span class="x-comment-general-title" data-symbolcode="<%=m.symbol.symbolCode%>" data-symboltype="<%=m.symbol.symbolType%>"><%=m.symbol.symbolName%> <em><%=m.symbol.symbolCode%></em></span>
+                        <%}else if(m.info){%>
+                            <img src="<%=m.info.infoImg ? m.info.infoImg : 'images/news.png'%>" alt="预览图" class="x-comment-preview news-img" onerror="this.src='images/news.png'"/>
+                            <span class="x-comment-general-title" data-infoid="<%=m.info.infoId%>"><%=m.info.infoTitle%> <em></em></span>
+                            <span class="x-comment-general-summary"><%=m.parentContent%></span>
+                        <%}else{%>
+                            <img src="images/tiezi.png" alt="预览图" class="x-comment-preview"/>
+                            <span class="x-comment-general-title" data-postid="<%=m.post.postId%>"><%=m.post.postTitle%></span>
+                            <%if(m.parentContent){%>
+                                <span class="x-comment-general-summary"><%=m.parentContent%></span>
+                            <%}else if(m.post.postContent){%>
+                                <span class="x-comment-general-summary"><%=m.post.postContent%></span>
+                            <%}%>
+                        <%}%>
+                    </figure>
+                </a>
+            </article>
+        </li>
+    <%})%>
+</script>
+
+<script type="text/template" id="my-tmpl">
+    <%_.each(list, function(m){%>
+        <li class="x-comment-line">
+            <figure>
+                <a href="javascript:void(0);" data-unionid="<%=m.unionId%>" class="goto_community">
+                    <img src="<%=m.headPortrait ? m.headPortrait : 'images/defaut_head.jpg'%>" alt="头像" class="user-img" onerror="this.src='images/defaut_head.jpg'"/>
+                </a>
+                <!--<p class="x-comment-username"><%=m.replyUserName%></p>-->
+                <p class="x-comment-username">
+                    <a href="javascript:void(0);" data-unionid="<%=m.unionId%>" class="goto_community">
+                        <%=m.screenName%></p>
+                    </a>
+                <p class="x-comment-date"><%=m.commentDate%></p>
+            </figure>
+            <article class="x-comment-detail" data-id="<%=m.sourceId || m.id%>" data-commentid="<%=m.id%>">
+                <p class="x-comment-article" otype="Function_myComments" otitle="myComments_myReply_commDetail"><%=m.description%></p>
+                <a href="javascript:void(0);" class="x-comment-general">
+                    <figure class="x-comment-img" data-scene="<%=m.scene%>">
+                        <%if(m.symbol){%>
+                            <img src="images/share.png" alt="预览图" class="x-comment-preview"/>
+                            <span class="x-comment-general-title" data-symbolcode="<%=m.symbol.symbolCode%>" data-symboltype="<%=m.symbol.symbolType%>"><%=m.symbol.symbolName%> <em><%=m.symbol.symbolCode%></em></span>
+                        <%}else if(m.info){%>
+                            <img src="<%=m.info.infoImg ? m.info.infoImg : 'images/news.png'%>" alt="预览图" class="x-comment-preview news-img" onerror="this.src='images/news.png'"/>
+                            <span class="x-comment-general-title" data-infoid="<%=m.info.infoId%>"><%=m.info.infoTitle%> <em></em></span>
+                            <%if(m.parentContent){%>
+                                 <span class="x-comment-general-summary"><%=m.parentContent%></span>   
+                            <%}%>
+                        <%}else{%>
+                            <img src="images/tiezi.png" alt="预览图" class="x-comment-preview"/>
+                            <span class="x-comment-general-title" data-postid="<%=m.post.postId%>"><%=m.post.postTitle%></span>
+                            <%if(m.parentContent){%>
+                                <span class="x-comment-general-summary"><%=m.parentContent%></span>
+                            <%}else if(m.post.postContent){%>
+                                <span class="x-comment-general-summary"><%=m.post.postContent%></span>
+                            <%}%>
+                        <%}%>
+                        
+                    </figure>
+                </a>
+            </article>
+        </li>
+    <%})%>
+</script>
+
+<script type="text/template" id="profect-tmpl">
+    <%_.each(list, function(m){%>
+        <li class="x-comment-line">
+            <article class="x-comment-detail">
+                <span class="x-comment-perfect-title">
+                    <span><%=m.screenName%></span>为你点赞<em class="x-comment-perfect"></em>
+                </span>
+                <a href="javascript:void(0);" class="x-comment-general" data-id="<%=m.id%>" otype="Function_myComments" otitle="myComments_gotAgree_commDetail">
+                    <%if(m.symbol){%>
+                        <figure class="x-comment-img" data-scene="<%=m.scene%>">
+                            <img src="images/share.png" alt="预览图" class="x-comment-preview"/>
+                            <span class="x-comment-general-title" data-symbolcode="<%=m.symbol.symbolCode%>" data-symboltype="<%=m.symbol.symbolType%>"><%=m.symbol.symbolName%> <em><%=m.symbol.symbolCode%></em></span>
+                            <span class="x-comment-general-summary">$(<%=m.symbol.symbolType + m.symbol.symbolCode%>)$</span>
+                        </figure>
+                    <%}else if(m.info){%>
+                        <figure class="x-comment-img" data-scene="<%=m.scene%>">
+                            <img src="<%=m.info.infoImg ? m.info.infoImg : 'images/news.png'%>" alt="预览图" class="x-comment-preview news-img" onerror="this.src='images/news.png'"/>
+                            <span class="x-comment-general-title" data-infoid="<%=m.info.infoId%>"><%=m.info.infoTitle%> <em></em></span>
+                            <%if(m.content){%>
+                                <span class="x-comment-general-summary"><%=m.content%></span>
+                            <%}%>
+                        </figure>
+                    <%}else{%>
+                        <figure class="x-comment-img" data-scene="<%=m.scene%>">
+                            <img src="images/tiezi.png" alt="预览图" class="x-comment-preview"/>
+                            <span class="x-comment-general-title" data-postid="<%=m.post.postId%>"><%=m.post.postTitle%></span>
+                            <span class="x-comment-general-summary"><%=m.post.postContent%></span>
+                        </figure>
+                    <%}%>
+                </a>
+            </article>
+        </li>
+    <%})%>
+</script>
+<!--<ul class="my-reply">
+    <li class="selected">我的评论</li>
+    <li>
+        收到的回复
+        <i></i>
+    </li>
+</ul>-->
+<ul class="my-reply">
+    <li class="selected my-reply-sidebar" id="reply-tab">
+        <a href="javascript:void(0);" otype="Function_myComments" otitle="myComments_gotReply">
+            <span class="my-reply-new">收到回复</span>
+        </a>
+    </li>
+    <li class="my-reply-sidebar" id="good-tab">
+        <a href="javascript:void(0);" otype="Function_myComments" otitle="myComments_gotAgree">
+            <span class="my-reply-new">赞</span>
+        </a>    
+    </li>
+    <li id="comment-tab">
+        <a href="javascript:void(0);" otype="Function_myComments" otitle="myComments_myReply">
+            <span class="my-reply-new">我的发言</span>
+        </a>
+    </li>
+</ul>
+<div>
+    <div class="reply_div">
+        <div class="my-reply-div" id="my-reply-tab">
+            <div class="x-comment">
+                <ul>
+                    <li class="x-comment-line" ng-repeat="m in replyList">
+                        <figure>
+                            <a href="javascript:void(0);" data-unionid="{{m.unionId}}" class="goto_community">
+                                <img src="{{m.headPortrait}}" alt="头像" class="user-img" onerror="this.src='images/defaut_head.jpg'"/>
+                            </a>
+                            <p class="x-comment-username">
+                                <a href="javascript:void(0);" data-unionid="{{m.unionId}}" class="goto_community">
+                                    {{m.replyUserName}}</p>
+                                </a>
+                            <p class="x-comment-date">{{m.commentDate}}</p>
+                        </figure>
+                        <article class="x-comment-detail" data-id="<%=m.sourceId%>" data-commentid="{{m.commentId}}">
+                            <p class="x-comment-article" otype="Function_myComments" otitle="myComments_gotReply_commDetail">{{m.commentContent}}</p>
+                            <a href="javascript:void(0);" class="x-comment-general">
+                                <figure class="x-comment-img" data-scene="{{m.scene}}" ng-include="m.path">
+                                    <!--<%if(m.symbol){%>
+                                        <img src="images/share.png" alt="预览图" class="x-comment-preview"/>
+                                        <span class="x-comment-general-title" data-symbolcode="<%=m.symbol.symbolCode%>" data-symboltype="<%=m.symbol.symbolType%>"><%=m.symbol.symbolName%> <em><%=m.symbol.symbolCode%></em></span>
+                                    <%}else if(m.info){%>
+                                        <img src="<%=m.info.infoImg ? m.info.infoImg : 'images/news.png'%>" alt="预览图" class="x-comment-preview news-img" onerror="this.src='images/news.png'"/>
+                                        <span class="x-comment-general-title" data-infoid="<%=m.info.infoId%>"><%=m.info.infoTitle%> <em></em></span>
+                                        <span class="x-comment-general-summary"><%=m.parentContent%></span>
+                                    <%}else{%>
+                                        <img src="images/tiezi.png" alt="预览图" class="x-comment-preview"/>
+                                        <span class="x-comment-general-title" data-postid="<%=m.post.postId%>"><%=m.post.postTitle%></span>
+                                        <%if(m.parentContent){%>
+                                            <span class="x-comment-general-summary"><%=m.parentContent%></span>
+                                        <%}else if(m.post.postContent){%>
+                                            <span class="x-comment-general-summary"><%=m.post.postContent%></span>
+                                        <%}%>
+                                    <%}%>-->
+                                </figure>
+                            </a>
+                        </article>
+                    </li>
+                    <li class="x-comment-more">
+                        上滑加载更多
+                    </li>
+                </ul>
+            </div>
+            <!-- 没有信息 -->
+            <!--
+            <div class="x-comment-no-message">
+                <span class=""></span>
+                <p>您还没有收到过回复</p>
+            </div>
+            -->
+        </div>
+        <p class="reply-info"></p>
+    </div>
+    <div class="reply_div" style="display:none" id="profect-tab">
+        <div class="my-reply-div">
+            <div class="x-comment x-comment-perfect-layout">
+                <ul>
+                    <li class="x-comment-more">
+                        上滑加载更多
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="reply-list"></p>
+    </div>
+    <div class="reply_div" style="display:none" id="my-comment-tab">
+        <div class="my-reply-div">
+            <div class="x-comment">
+                <ul>
+                    <li class="x-comment-more">
+                        上滑加载更多
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="reply-info"></p>
+    </div>
+    
+</div>

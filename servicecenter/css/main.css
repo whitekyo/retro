@@ -1,0 +1,400 @@
+/*
+    author: 杨成
+*/
+/* page reset */
+u {
+    text-decoration: none;
+}
+
+body {
+    background-color: #eee;
+}
+
+.x-head-skin {
+    /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/servicecenter/images/bg.png?<%= buildNumber %>) no-repeat;*/
+    background: url(../images/bg.png) no-repeat;
+    /*endref*/
+    background-size: 100% auto;
+    background-color: #fff;
+}
+
+.x-head-layout {
+    padding-top: .15rem;
+    padding-bottom: .15rem;
+    height: 2.53rem;
+}
+
+.x-problem-search-layout {
+    margin: 0 .34rem .15rem .34rem;
+    position: relative;
+}
+
+.x-problem-search-skin {
+    color: #fff;
+}
+
+.x-problem-search-input-skin {
+    background-color: #fff;
+    border-radius: .1rem;
+    font-size: .26rem;
+    opacity: .4;
+}
+
+.x-problem-search-input-layout {
+    line-height: .56rem;
+    height: .56rem;
+}
+
+.x-problem-search-words-layout {
+    position: absolute;
+    top: .08rem;
+    left: .72rem;
+    color: #fff;
+}
+
+.x-nav-link {
+    text-align: center;
+    float: left;
+    font-weight: normal;
+    font-size: .28rem;
+    color: #4b2f28;
+    padding-bottom: .3rem;
+}
+
+.x-nav {
+    margin: 0 .34rem;
+    /*height: 1.98rem;*/
+}
+
+/*#x-hotProblems-content {
+    height: 2.99rem;
+}*/
+
+
+.x-nav a,
+#x-hotProblems-content a {
+    position: relative;
+    display: inline-block;
+}
+
+.x-nav-link strong {
+    position: absolute;
+    top: 1.53rem;
+    left: 0rem;
+    width: 1.38rem;
+    text-align: center;
+    font-weight: 100;
+    color: #4b2f28;
+    line-height: 1;
+}
+
+.x-line {
+    height: 1px;
+    background-color: #C8C8C8;
+    position: relative;
+}
+
+.x-line-layout {
+    margin: 0 0 .4rem 0;
+}
+
+.x-line-layout2 {
+    padding: .4rem .54rem .1rem .54rem;
+    border-bottom: 1px solid #bbb;
+}
+
+.x-hotProblems-title-layout {
+    width: 1.16rem;
+    height: .36rem;
+    line-height: .36rem;
+}
+
+.x-hotProblems-title-skin {
+    color: #999999;
+    font-size: .28rem;
+    background-color: #fff;
+    padding: 0 .2rem;
+    position: absolute;
+    top: -.18rem;
+    left: 50%;
+    margin-left: -.78rem;
+}
+
+#x-hotProblems u {
+    float: left;
+    font-size: .24rem;
+    color: #333333;
+    padding-bottom: .6rem;
+}
+
+#x-hotProblems u {
+    position: relative;
+}
+
+
+#x-hotProblems span {
+    position: absolute;
+    top: .82rem;
+    left: -.1rem;
+    width: 1rem;
+    text-align: center;
+    line-height: .6rem;
+    color: #333;
+}
+
+.x-modules-title-layout {
+    line-height: .9rem;
+    height: .9rem;
+    padding: 0 .3rem 0 .34rem;
+}
+
+.eventToNative.x-modules-title-layout {
+    line-height: .9rem;
+    padding-left: 0px;
+}
+
+.x-modules-summary-layout .x-modules-title {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.x-modules-title-skin {
+    border-bottom: 1px solid #ccc;
+    font-size: .3rem;
+    color: #000;
+}
+
+.x-modules-summary-layout {
+    margin-left: .34rem;
+}
+
+
+.x-modules-summary-skin {
+    color: #333;
+    font-size: .26rem;
+}
+
+.x-modules-summary-layout li {
+    border-bottom: 1px solid #ccc;
+    padding: .21rem 0;
+}
+
+.x-modules-summary-layout li:last-child {
+    border-bottom: none;
+}
+
+.x-modules-summary-layout a {
+    line-height: .36rem;
+    display: block;
+    color: #333;
+}
+
+.x-mt10 {
+    margin-top: .1rem;
+}
+
+.x-modules-skin {
+    background-color: #fff;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
+
+#x-modules {
+    margin-bottom: 1rem;
+}
+
+#x-hotProblems {
+    background-color: #fff;
+    padding-top: .01rem;
+}
+
+.x-overflow-layout u {
+    width: 33%;
+    text-align: right;
+}
+
+.x-more {
+    float: right;
+    margin-top: .3rem;
+}
+
+.x-overflow-layout2 u {
+    width: 50%;
+    text-align: right;
+}
+
+.x-w_half {
+    width: 49%;
+    display: inline-block;
+}
+
+.nav-display-1 .x-nav-link,
+.nav-display-2 .x-nav-link {
+    position: relative;
+    left: 50%;
+    margin-left: -.69rem;
+}
+
+.x-hotProblems-line:last-child {
+    margin-top: .18rem;
+}
+
+.x-mt20 {
+    margin-top: .2rem;
+}
+
+/* icon */
+.x-i1,
+.x-icon-module1,
+.x-icon-module2,
+.x-i-more {
+    /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/servicecenter/images/sprite.png?<%= buildNumber %>);*/
+    background-image: url(../images/sprite.png);
+    /*endref*/
+    display: inline-block;
+    background-size: 4.1rem auto;
+}
+
+.x-i1 {
+    background-position: -2.98rem -1.8rem;
+    width: .37rem;
+    height: .37rem;
+    position: absolute;
+    top: .12rem;
+    left: .2rem;
+}
+
+.x-i-fang1,
+.x-i-fang2,
+.x-i-fang3,
+.x-i-fang4,
+.x-i-fang5,
+.x-i-fang6,
+.x-i-fang7,
+.x-i-fang8 {
+    /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/servicecenter/images/yc-sprite-new.png?<%= buildNumber %>);*/
+    background-image: url(../images/yc-sprite-new.png);
+    /*endref*/
+    display: inline-block;
+    background-size: 200% auto;
+
+}
+
+.x-i-fang1 {
+    background-position: 0 0;
+}
+
+.x-i-fang2 {
+    background-position: 0 25%;
+}
+
+.x-i-fang3 {
+    background-position: 0 50%;
+}
+
+.x-i-fang4 {
+    background-position: 0 75%;
+}
+
+.x-i-fang5 {
+    background-position: 0 100%;
+}
+
+.x-i-fang6 {
+    background-position: 100% 0;
+}
+
+.x-i-fang7 {
+    background-position: 100% 25%;
+}
+
+.x-i-fang8 {
+    background-position: 100% 50%;
+}
+
+
+
+.x-i-yuan1,
+.x-i-yuan2,
+.x-i-yuan3,
+.x-i-yuan4 {
+    /*ref:fullreplace background: url(https://cdn.stock.pingan.com.cn/html/aylc/servicecenter/images/yc-sprite-new-1.png?<%= buildNumber %>);*/
+    background-image: url(../images/yc-sprite-new-1.png);
+    /*endref*/
+    display: inline-block;
+    background-size: 200% auto;
+    width: 1.38rem;
+    height: 1.38rem;
+    margin-bottom: .15rem;
+}
+
+.x-i-yuan1 {
+    background-position: 0 0;
+}
+
+.x-i-yuan2 {
+    background-position: 0 50%;
+}
+
+.x-i-yuan3 {
+    background-position: 0 100%;
+}
+
+.x-i-yuan4 {
+    background-position: 100% 0;
+}
+
+
+.x-i-fang1,
+.x-i-fang2,
+.x-i-fang3,
+.x-i-fang4,
+.x-i-fang5,
+.x-i-fang6,
+.x-i-fang7,
+.x-i-fang8 {
+    width: .82rem;
+    height: .82rem;
+}
+
+.x-icon-module1,
+.x-icon-module2 {
+    width: .43rem;
+    height: .43rem;
+    vertical-align: text-top;
+}
+
+.x-icon-module1 {
+    background-position: -.08rem -1.72rem;
+}
+
+.x-icon-module2 {
+    background-position: -0.06rem -2.15rem;
+}
+
+.x-i-more {
+    background-position: -3.5rem -1.76rem;
+    width: .2rem;
+    height: .3rem;
+}
+
+.x-i-yuan4 {
+    background-image: url(../images/x-i-yuan4.png);
+    width: 1.38rem;
+    height: 1.38rem;
+    margin-bottom: .15rem;
+    display: inline-block;
+    background-size: 100% auto;
+}
+
+@media screen and (min-width: 410px){
+    html {
+        font-size: 312.5%;
+    }
+}
+
+@media screen and (min-width: 480px){
+    html {
+        font-size: 312.5%;
+    }
+}
